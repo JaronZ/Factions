@@ -184,15 +184,11 @@ public abstract class MPlugin extends PluginBase {
     }
 
     public boolean handleCommand(final CommandSender sender, String commandString, boolean testOnly, boolean async) {
-        boolean noSlash = true;
-        if (commandString.startsWith("/")) {
-            noSlash = false;
-            commandString = commandString.substring(1);
-        }
+        // Fully disable non-slash command
+        if(!commandString.startsWith("/")) return false;
+        commandString = commandString.substring(1);
 
         for (final MCommand<?> command : this.getBaseCommands()) {
-            if (noSlash && !command.allowNoSlashAccess) continue;
-
             for (String alias : command.aliases) {
                 // disallow double-space after alias, so specific commands can be prevented (preventing "f home" won't prevent "f  home")
                 if (commandString.startsWith(alias + "  ")) return false;

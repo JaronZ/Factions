@@ -19,7 +19,6 @@ public abstract class MCommand<T extends MPlugin> {
     public List<MCommand<?>> subCommands;
     // The different names this commands will react to
     public List<String> aliases;
-    public boolean allowNoSlashAccess;
     // Information on the args
     public List<String> requiredArgs;
     public LinkedHashMap<String, String> optionalArgs;
@@ -43,8 +42,6 @@ public abstract class MCommand<T extends MPlugin> {
         this.p = p;
 
         this.permission = null;
-
-        this.allowNoSlashAccess = false;
 
         this.subCommands = new ArrayList<MCommand<?>>();
         this.aliases = new ArrayList<String>();
